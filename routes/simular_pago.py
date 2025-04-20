@@ -60,5 +60,7 @@ def simular_pago():
         "mensaje": "Pago simulado exitosamente",
         "total": total,
         "metodo_pago": metodo_pago,
-        "estado": estado
+        "estado": estado,
+        "id_compra": id_compra,  # ✅ Agregado aquí
+         "id_carrito": id_carrito, 
     }), 200

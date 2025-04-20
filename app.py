@@ -24,12 +24,11 @@ from flask_sqlalchemy import SQLAlchemy
 from routes.simular_pago import simular_pago_bp
 from routes.reportes_compras import reportes_compras_bp
 import os
-
-
+from routes.calificacion import calificacion_bp
 from routes.voz.procesar_comando import procesar_comando_bp
 from routes.voz.voz_inteligente import voz_inteligente_bp
 from routes.voz.comandos_voz import comandos_voz_bp
-
+from routes.compras import compras_bp
 #from routes.voz.comandos_voz import utilidades_voz_bp
 
 app = Flask(__name__)
@@ -70,9 +69,9 @@ app.register_blueprint(catalogo_bp)
 #app.register_blueprint(stripe_checkout_bp)
 app.register_blueprint(simular_pago_bp)
 app.register_blueprint(reportes_compras_bp)
+app.register_blueprint(calificacion_bp)
 
-
-
+app.register_blueprint(compras_bp)
 app.register_blueprint(procesar_comando_bp)
 app.register_blueprint(voz_inteligente_bp)
 app.register_blueprint(comandos_voz_bp)

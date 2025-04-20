@@ -297,9 +297,11 @@ def obtener_todos_los_productos():
         conexion = conectar_db()
         cursor = conexion.cursor()
         cursor.execute("""
-            SELECT p.id, p.nombre, p.descripcion, p.precio, p.stock, p.id_categoria,
-                   p.umbral_minimo, p.umbral_maximo, p.visible, p.imagen, p.modelo
+            SELECT p.id, p.nombre, p.descripcion, p.precio, p.stock,
+                   p.umbral_minimo, p.umbral_maximo, p.modelo,
+                   c.nombre AS categoria, p.visible, p.imagen
             FROM productos p
+            JOIN categorias c ON p.id_categoria = c.id
             ORDER BY p.nombre ASC
         """)
         columnas = [desc[0] for desc in cursor.description]
@@ -310,6 +312,7 @@ def obtener_todos_los_productos():
         print("❌ Error al obtener todos los productos:", e)
         return jsonify({"mensaje": "Error interno"}), 500
 
+
 @productos_bp.route('/productos/criticos', methods=['GET'])
 @token_requerido
 def obtener_productos_criticos():
@@ -318,9 +321,10 @@ def obtener_productos_criticos():
         cursor = conexion.cursor()
         cursor.execute("""
             SELECT p.id, p.nombre, p.descripcion, p.precio, p.stock,
-                   p.id_categoria, p.umbral_minimo, p.umbral_maximo,
-                   p.visible, p.imagen, p.modelo
+                   p.umbral_minimo, p.umbral_maximo, p.modelo,
+                   c.nombre AS categoria, p.visible, p.imagen
             FROM productos p
+            JOIN categorias c ON p.id_categoria = c.id
             WHERE p.stock <= p.umbral_minimo
         """)
         columnas = [desc[0] for desc in cursor.description]

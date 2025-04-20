@@ -136,6 +136,7 @@ def procesar_comando():
 
         return jsonify({
         'mensaje': 'Carrito activo obtenido',
+        "accion": "ver_carrito",  # 👈 AGREGA ESTA LÍNEA
         'carrito': {
             'id': carrito_id,
             'productos': productos

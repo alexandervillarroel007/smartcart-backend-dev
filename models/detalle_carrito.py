@@ -129,7 +129,8 @@ def validar_stock_carrito(id_carrito):
                 "cantidad_solicitada": fila[1]
             })
 
-    return errores
+    return errores  # ✅ SOLO retorna lista
+
 
 def descontar_stock_carrito(id_carrito):
     conexion = conectar_db()

@@ -10,6 +10,6 @@ def calcular_descuento_automatico(total):
     fecha_inicio = datetime(2025, 4, 1).date()
     fecha_fin = datetime(2025, 4, 30).date()
 
-    if total >= 300 and fecha_inicio <= hoy <= fecha_fin:
-        return round(total * 0.10, 2)  # 10% de descuento
-    return 0.0
+    if total >= 5000:
+        return total * 0.1  # 10% de descuento
+    return 0
